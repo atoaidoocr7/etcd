@@ -20,7 +20,6 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	errorspkg "errors"
-	"fmt"
 	"go.etcd.io/etcd/server/v3/etcdserver/toey"
 	"strconv"
 	"time"
@@ -151,7 +150,10 @@ func (s *EtcdServer) Range(ctx context.Context, r *pb.RangeRequest) (*pb.RangeRe
 		err = serr
 		return nil, err
 	}
-	fmt.Println("aaidoo response is: ", toey.ConvertRangeResponse(resp))
+	s.lg.Info("aaidoo response is: ", zap.Any("response", toey.ConvertRangeResponse(resp)))
+	if resp.Header != nil {
+		s.lg.Info("adidoo range response header ", zap.Any("header", *resp.Header))
+	}
 	return resp, err
 }
 

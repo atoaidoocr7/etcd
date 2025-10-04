@@ -36,6 +36,7 @@ func Range(ctx context.Context, lg *zap.Logger, kv mvcc.KV, r *pb.RangeRequest) 
 	}(time.Now())
 	txnRead := kv.Read(mvcc.ConcurrentReadTxMode, trace)
 	defer txnRead.End()
+	lg.Info("aaidoo we hit this code path")
 	resp, err = executeRange(ctx, lg, txnRead, r)
 	return resp, trace, err
 }
