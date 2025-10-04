@@ -20,6 +20,8 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 	errorspkg "errors"
+	"fmt"
+	"go.etcd.io/etcd/server/v3/etcdserver/toey"
 	"strconv"
 	"time"
 
@@ -149,6 +151,7 @@ func (s *EtcdServer) Range(ctx context.Context, r *pb.RangeRequest) (*pb.RangeRe
 		err = serr
 		return nil, err
 	}
+	fmt.Println("aaidoo response is: ", toey.ConvertRangeResponse(resp))
 	return resp, err
 }
 
