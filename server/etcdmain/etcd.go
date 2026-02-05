@@ -92,7 +92,7 @@ func startEtcdOrProxyV2(args []string) {
 	if cfg.ec.Dir == "" {
 		cfg.ec.Dir = fmt.Sprintf("%v.etcd", cfg.ec.Name)
 		lg.Warn(
-			"'data-dir' was empty; using default",
+			"aaidoo: 'data-dir' was empty; using default",
 			zap.String("data-dir", cfg.ec.Dir),
 		)
 	}
